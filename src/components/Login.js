@@ -62,7 +62,7 @@ const Login = () => {
 
           <div className="flex justify-center items-center mt-6">
             <button
-              className={`bg-green py-2 px-4 text-sm text-white rounded border border-green focus:outline-none focus:border-green-dark`}
+              className={`bg-green py-2 px-4 text-sm text-black rounded border border-green focus:outline-none focus:border-green-dark`}
             >
               Login
             </button>
