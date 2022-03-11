@@ -17,7 +17,7 @@ function index() {
       <Route path="/items/create" element={<AddItem />} />
       <Route path="/items/:id" element={<UpdateItem />} />
       <Route path="/orders" element={<Orders />} />
-      <Route path="/file" element={<File />} />
+      <Route path="/uploadfile" element={<File />} />
       {/* <Route component={NotFoundPage} /> */}
     </Routes>
   );

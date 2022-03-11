@@ -1,6 +1,7 @@
-import React, {  useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 import {
   signinUser,
@@ -27,6 +28,14 @@ const Login = () => {
     if (getUser) {
       ReDirectToHome();
     }
+    if (getUserError) {
+      toast.error("Error while loging you in", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+      });
+    }
   }, [getUser, getUserError]);
 
   const ReDirectToHome = () => {
@@ -36,6 +45,7 @@ const Login = () => {
   };
   return (
     <div className="h-screen flex bg-gray-bg1">
+      <ToastContainer />
       <div className="w-full max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16">
         <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
           Log in

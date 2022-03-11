@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { selectUser, logout } from "../../features/user/userSlice";
 function Header() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const getUser = useSelector(selectUser);
   const Home = useNavigate();
   const logoutUser = () => {
@@ -46,6 +46,14 @@ function Header() {
                   className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                 >
                   Orders
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  to={`/uploadfile`}
+                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                >
+                  Upload
                 </NavLink>
               </li>
               <li className="nav-item">
