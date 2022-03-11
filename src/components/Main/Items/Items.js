@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   getAllItemsAsync,
   selectItems,
@@ -20,36 +21,43 @@ function Items() {
     items.map((item) => {
       return (
         <>
-          <tr className="hover:bg-gray-100 dark:hover:bg-gray-700">
-            <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              {item.UPC}
+          <tr>
+            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+              <p className="text-gray-900 whitespace-no-wrap">{item.UPC}</p>
             </td>
-            <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
-              {item.name}
+            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+              <p className="text-gray-900 whitespace-no-wrap"> {item.name}</p>
             </td>
-            <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              {item.brand}
-            </td>
-            <td className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
-              {item.pharmacySKU}
-            </td>
-            <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              {item.size}
-            </td>
-            <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              {item.createdAt}
-            </td>
-            <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              {item.updatedAt}
+            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+              <p className="text-gray-900 whitespace-no-wrap"> {item.brand}</p>
             </td>
 
-            <td className="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-              <a
-                href="#"
+            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+              <p className="text-gray-900 whitespace-no-wrap">
+                {item.pharmacySKU}
+              </p>
+            </td>
+            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+              <p className="text-gray-900 whitespace-no-wrap"> {item.size}</p>
+            </td>
+            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+              <p className="text-gray-900 whitespace-no-wrap">
+                {item.createdAt}
+              </p>
+            </td>
+            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+              <p className="text-gray-900 whitespace-no-wrap">
+                {item.updatedAt}
+              </p>
+            </td>
+            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+              <Link
+                to={`/items/${item.id}`}
+                state={{ item }}
                 className="text-blue-600 dark:text-blue-500 hover:underline"
               >
                 Edit
-              </a>
+              </Link>
             </td>
           </tr>
         </>
@@ -57,74 +65,51 @@ function Items() {
     });
 
   return (
-
-    <div className="max-w-6xl mx-auto">
-      <h1 className="">Items</h1>
-      <div className="flex flex-col">
-        <div className="overflow-x-auto shadow-md sm:rounded-lg">
-          <div className="inline-block min-w-full align-middle">
-            <div className="overflow-hidden ">
-              <table className="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
-                <thead className="bg-gray-100 dark:bg-gray-700">
-                  <tr>
-                    <th
-                      scope="col"
-                      className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
-                    >
-                      UPC
-                    </th>
-                    <th
-                      scope="col"
-                      className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
-                    >
-                      Name
-                    </th>
-                    <th
-                      scope="col"
-                      className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
-                    >
-                      Brand
-                    </th>
-                    <th
-                      scope="col"
-                      className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
-                    >
-                      Pharmacy SKU
-                    </th>
-                    <th
-                      scope="col"
-                      className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
-                    >
-                      Size
-                    </th>
-                    <th
-                      scope="col"
-                      className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
-                    >
-                      Created At
-                    </th>
-                    <th
-                      scope="col"
-                      className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
-                    >
-                      Updated At
-                    </th>
-                    <th
-                      scope="col"
-                      className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
-                    >
-                      Action
-                    </th>
-                    <th scope="col" className="p-4">
-                      <span className="sr-only">Edit</span>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
-                  {getItems}
-                </tbody>
-              </table>
-            </div>
+    <div className="container mx-auto px-4 sm:px-8">
+      <div className="py-8">
+        <div className="flex flex-row justify-between">
+          <h2 className="text-2xl font-semibold leading-tight">Items</h2>
+          <Link
+            to={"/items/create"}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Create an Item
+          </Link>
+        </div>
+        <div className="my-2 flex sm:flex-row flex-col"></div>
+        <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+          <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
+            <table className="min-w-full leading-normal">
+              <thead>
+                <tr>
+                  <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    UPC
+                  </th>
+                  <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Name
+                  </th>
+                  <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Brand
+                  </th>
+                  <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Pharmacy SKU
+                  </th>
+                  <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Size
+                  </th>
+                  <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Created At
+                  </th>
+                  <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Updated At
+                  </th>
+                  <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Action
+                  </th>
+                </tr>
+              </thead>
+              {getItems}
+            </table>
           </div>
         </div>
       </div>

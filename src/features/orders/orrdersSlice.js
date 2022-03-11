@@ -11,13 +11,10 @@ export const getAllItemsAsync = createAsyncThunk("items/getItems", async () => {
   return response.data;
 });
 
-export const getItemsByIdAsync = createAsyncThunk(
-  "items/getItemByItem",
-  async (id) => {
-    const response = await getItemById(id);
-    return response.data;
-  }
-);
+export const geItemsByIdAsync = createAsyncThunk("items/getItems", async (id) => {
+  const response = await  getItemById(id);
+  return response.data;
+});
 export const createItemAsync = createAsyncThunk(
   "items/createNewItem",
   async (item) => {
@@ -34,11 +31,10 @@ export const updateItemAsync = createAsyncThunk(
   }
 );
 
-export const itemsSlice = createSlice({
-  name: "items",
+export const orrdersSlice= createSlice({
+  name: "orders",
   initialState: {
     items: [],
-    seletectedItem: {},
     error: null,
     status: null,
   },
@@ -59,14 +55,6 @@ export const itemsSlice = createSlice({
       state.error = message;
       state.status = "Error fetching Items";
     },
-    [getItemsByIdAsync.pending]: (state, action) => {
-      state.seletectedItem = {};
-      state.status = null;
-    },
-    [getItemsByIdAsync.fulfilled]: (state, action) => {
-      state.seletectedItem = action.payload;
-      state.status = "Items Updated";
-    },
     [createItemAsync.pending]: (state) => {
       state.error = null;
       state.status = "Adding Item..";
@@ -79,25 +67,12 @@ export const itemsSlice = createSlice({
       state.error = message;
       state.status = "Error Adding Item";
     },
-    [updateItemAsync.pending]: (state) => {
-      state.error = null;
-      state.status = "Updating Item..";
-    },
-    [updateItemAsync.fulfilled]: (state, action) => {
-      state.status = "Item Updated";
-    },
-    [updateItemAsync.rejected]: (state, action) => {
-      const { message } = action.error;
-      state.error = message;
-      state.status = "Error Updating Item";
-    },
   },
 });
 
 // export const { } = itemsSlice.actions;
 
 export const selectItems = (state) => state.items.items;
-export const selectItemById = (state) => state.items.seletectedItem;
 export const selectStatus = (state) => state.items.status;
 export const selectError = (state) => state.items.error;
-export default itemsSlice.reducer;
+export default orrdersSlice.reducer;

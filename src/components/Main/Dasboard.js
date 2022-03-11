@@ -1,6 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
+
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getAllItemsCountAsync,
+  getDeliveredAsync,
+  getCancelledAsync,
+  selectItems,
+  selectDeliveredItems,
+  selectCancelledItem,
+} from "../../features/dashboard/dasboardSlice";
 
 function Dasboard() {
+  const getTotalItems = useSelector(selectItems);
+  const getDeliveredOrders = useSelector(getDeliveredAsync());
+  const getCancelledItems = useSelector(getCancelledAsync());
+  const dispatch = useDispatch();
+  useEffect(() => {
+    // dispatch(getAllItemsCountAsync());
+    dispatch(getDeliveredAsync());
+    // dispatch(getCancelledAsync());
+  }, [dispatch]);
   return (
     <div>
       <h1 className="font-bold pl-2">Dashboard</h1>
@@ -41,7 +60,7 @@ function Dasboard() {
                   Total Items
                 </h2>
                 <p className="font-bold text-3xl">
-                  0
+                0
                   <span className="text-pink-500">
                     <i className="fas fa-exchange-alt" />
                   </span>
@@ -63,7 +82,7 @@ function Dasboard() {
                   Cancelled Orders
                 </h2>
                 <p className="font-bold text-3xl">
-                  0
+               0
                   <span className="text-yellow-600">
                     <i className="fas fa-caret-up" />
                   </span>
@@ -84,7 +103,7 @@ function Dasboard() {
                 <h2 className="font-bold uppercase text-gray-600">
                   Delivered Orders
                 </h2>
-                <p className="font-bold text-3xl">152 days</p>
+                <p className="font-bold text-3xl">0</p>
               </div>
             </div>
           </div>
