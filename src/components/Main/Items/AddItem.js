@@ -29,7 +29,7 @@ function AddItem() {
       newItem.size.length > 0 &&
       newItem.UPC.length > 0
     ) {
-      //dispatch(createItemAsync(newItem));
+      dispatch(createItemAsync(newItem));
       toast.success("Item Created", {
         position: "top-right",
         autoClose: 5000,

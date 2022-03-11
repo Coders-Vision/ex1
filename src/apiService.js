@@ -17,9 +17,9 @@ export const signIn = (signInData) =>
   axios.post(`${BASE_URL}auth/local`, signInData);
 
 export const getDeliveredItems = () =>
-  serverCall.get(`${BASE_URL}count?status=delivered`);
+  serverCall.get(`${BASE_URL}orders/count?status=delivered`);
 export const getCancelledItems = () =>
-  serverCall.get(`${BASE_URL}count?status=cancelled`);
+  serverCall.get(`${BASE_URL}orders/count?status=cancelled`);
 
 export const getItems = () => serverCall.get(`${BASE_URL}item-requests`);
 export const getItemById = (item_id) =>

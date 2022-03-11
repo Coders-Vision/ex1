@@ -7,18 +7,18 @@ import {
   getCancelledAsync,
   selectItems,
   selectDeliveredItems,
-  selectCancelledItem,
+  selectCancelledItems,
 } from "../../features/dashboard/dasboardSlice";
 
 function Dasboard() {
   const getTotalItems = useSelector(selectItems);
-  const getDeliveredOrders = useSelector(getDeliveredAsync());
-  const getCancelledItems = useSelector(getCancelledAsync());
+  const getDeliveredOrders = useSelector(selectDeliveredItems);
+  const getCancelledItems = useSelector(selectCancelledItems);
   const dispatch = useDispatch();
   useEffect(() => {
-    // dispatch(getAllItemsCountAsync());
+    dispatch(getAllItemsCountAsync());
     dispatch(getDeliveredAsync());
-    // dispatch(getCancelledAsync());
+    dispatch(getCancelledAsync());
   }, [dispatch]);
   return (
     <div>
@@ -60,7 +60,7 @@ function Dasboard() {
                   Total Items
                 </h2>
                 <p className="font-bold text-3xl">
-                0
+                {getTotalItems}
                   <span className="text-pink-500">
                     <i className="fas fa-exchange-alt" />
                   </span>
@@ -82,7 +82,7 @@ function Dasboard() {
                   Cancelled Orders
                 </h2>
                 <p className="font-bold text-3xl">
-               0
+                  {getCancelledItems}
                   <span className="text-yellow-600">
                     <i className="fas fa-caret-up" />
                   </span>
@@ -103,7 +103,7 @@ function Dasboard() {
                 <h2 className="font-bold uppercase text-gray-600">
                   Delivered Orders
                 </h2>
-                <p className="font-bold text-3xl">0</p>
+                <p className="font-bold text-3xl">{getDeliveredOrders}</p>
               </div>
             </div>
           </div>
